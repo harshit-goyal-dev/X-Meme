@@ -2,12 +2,14 @@ package com.crio.starter.service;
 
 import java.util.List;
 import com.crio.starter.data.MemeEntity;
-import com.crio.starter.exchange.*;;
+import com.crio.starter.exchange.*;
+import org.springframework.stereotype.Service;;
 
+@Service
 public interface IMemeService {
-    public List<MemeResponseDto> findAll(); 
+    public MemeListResponseDto findLatestHunderedMemes(); 
 
-    public MemeResponseDto findById();
+    public MemeResponseDto findById(String id);
 
-    public MemeEntity create();
+    public MemeEntity create(MemeEntity memeEntity);
 }
