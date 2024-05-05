@@ -8,6 +8,7 @@ import com.crio.starter.exceptions.MemeNotFoundException;
 import com.crio.starter.exchange.MemeCreatedResponseDto;
 import com.crio.starter.exchange.MemeResponseDto;
 import com.crio.starter.service.IMemeService;
+import com.crio.starter.service.MemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class MemeController {
     private static final String MEME_ENDPOINT = "/memes";
 
     @Autowired
-    private IMemeService memeService;
+    private MemeService memeService;
     
     @PostMapping(MEME_ENDPOINT)
     public ResponseEntity<MemeCreatedResponseDto> addMeme(@RequestBody @Valid MemeEntity meme){
