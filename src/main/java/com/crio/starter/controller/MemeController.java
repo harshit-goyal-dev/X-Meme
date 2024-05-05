@@ -6,7 +6,6 @@ import javax.validation.Valid;
 import com.crio.starter.data.MemeEntity;
 import com.crio.starter.exceptions.MemeNotFoundException;
 import com.crio.starter.exchange.MemeCreatedResponseDto;
-import com.crio.starter.exchange.MemeListResponseDto;
 import com.crio.starter.exchange.MemeResponseDto;
 import com.crio.starter.service.IMemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MemeController {
 
     protected static final String APPLICATION_ENDPOINT = "/xmeme/api/v1";
