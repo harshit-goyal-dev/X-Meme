@@ -10,6 +10,7 @@ import com.crio.starter.exchange.MemeResponseDto;
 import com.crio.starter.service.IMemeService;
 import com.crio.starter.service.MemeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class MemeController {
     public ResponseEntity<MemeCreatedResponseDto> addMeme(@RequestBody @Valid MemeEntity meme){
         
             MemeEntity memeEntity = memeService.create(meme);
+            if(memeEntity==null)return ResponseEntity.status(HttpStatus.CONFLICT).build();
             return ResponseEntity.ok().body(new MemeCreatedResponseDto(memeEntity.getId()));
         
     }

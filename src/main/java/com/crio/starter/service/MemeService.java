@@ -25,7 +25,7 @@ public class MemeService implements IMemeService{
         List<MemeResponseDto> ans = new ArrayList<>();
         List<MemeEntity> memeList = memeRepository.findAll();
         int size = memeList.size();
-        if(size==0)return null;
+        if(size==0)return ans;
         
         for(int i=size-1; i>=size-100; i--){
             if(i<0)continue;
@@ -47,6 +47,10 @@ public class MemeService implements IMemeService{
     public MemeEntity create(MemeEntity memeEntity) {
 
         // TODO Auto-generated method stub
+        List<MemeEntity> memeList = memeRepository.findAll();
+        for(MemeEntity meme: memeList){
+            if(meme.equals(memeEntity)) return null;
+        }
         return memeRepository.save(memeEntity);
     }
 
