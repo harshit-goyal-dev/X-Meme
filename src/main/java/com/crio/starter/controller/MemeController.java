@@ -25,7 +25,7 @@ public class MemeController {
     private static final String MEME_ENDPOINT = "/memes";
 
     @Autowired
-    private MemeService memeService;
+    private IMemeService memeService;
     
     @PostMapping(MEME_ENDPOINT)
     public ResponseEntity<MemeCreatedResponseDto> addMeme(@RequestBody @Valid MemeEntity meme){
