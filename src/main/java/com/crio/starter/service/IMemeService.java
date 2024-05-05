@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;;
 
 @Service
 public interface IMemeService {
-    public MemeListResponseDto findLatestHunderedMemes(); 
+    public List<MemeResponseDto> findLatestHunderedMemes(); 
 
     public MemeResponseDto findById(String id);
 

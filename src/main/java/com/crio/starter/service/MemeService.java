@@ -20,17 +20,19 @@ public class MemeService implements IMemeService{
     private IMemeRepository memeRepository;
 
     @Override
-    public MemeListResponseDto findLatestHunderedMemes() {
+    public List<MemeResponseDto> findLatestHunderedMemes() {
         // TODO Auto-generated method stub
+        List<MemeResponseDto> ans = new ArrayList<>();
         List<MemeEntity> memeList = memeRepository.findAll();
         int size = memeList.size();
-        if(size<=100)return new MemeListResponseDto(memeList);
-
-        List<MemeEntity> memes = new ArrayList<>();
-        for(int i=size-1; i>=size-101; i--){
-            memes.add(memeList.get(i));
+        if(size==0)return null;
+        
+        for(int i=size-1; i>=size-100; i--){
+            if(i<0)continue;
+            ans.add(new MemeResponseDto(memeList.get(i)));
         }
-        return new MemeListResponseDto(memes);
+        System.out.println(ans.size());
+        return ans;
     }
 
     @Override
@@ -45,9 +47,6 @@ public class MemeService implements IMemeService{
     public MemeEntity create(MemeEntity memeEntity) {
 
         // TODO Auto-generated method stub
-        // MemeEntity meme = new 
-        // System.out.println(memeRequestDto.toString());
-        // System.out.println(meme.toString());
         return memeRepository.save(memeEntity);
     }
 

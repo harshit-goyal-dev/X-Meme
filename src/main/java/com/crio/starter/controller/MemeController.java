@@ -1,16 +1,16 @@
 package com.crio.starter.controller;
 
+import lombok.RequiredArgsConstructor;
 import java.util.List;
+import javax.validation.Valid;
 import com.crio.starter.data.MemeEntity;
 import com.crio.starter.exceptions.MemeNotFoundException;
 import com.crio.starter.exchange.MemeCreatedResponseDto;
 import com.crio.starter.exchange.MemeListResponseDto;
-import com.crio.starter.exchange.MemeRequestDto;
 import com.crio.starter.exchange.MemeResponseDto;
 import com.crio.starter.service.IMemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +29,7 @@ public class MemeController {
     private IMemeService memeService;
     
     @PostMapping(MEME_ENDPOINT)
-    public ResponseEntity<MemeCreatedResponseDto> addMeme(@RequestBody MemeEntity meme){
+    public ResponseEntity<MemeCreatedResponseDto> addMeme(@RequestBody @Valid MemeEntity meme){
         
             MemeEntity memeEntity = memeService.create(meme);
             return ResponseEntity.ok().body(new MemeCreatedResponseDto(memeEntity.getId()));
@@ -37,8 +37,8 @@ public class MemeController {
     }
 
     @GetMapping(MEME_ENDPOINT)
-    public ResponseEntity<MemeListResponseDto> getMemes(){
-        MemeListResponseDto responseDto = memeService.findLatestHunderedMemes();
+    public ResponseEntity<List<MemeResponseDto>> getMemes(){
+        List<MemeResponseDto> responseDto = memeService.findLatestHunderedMemes();
         return ResponseEntity.ok().body(responseDto);
     }
 

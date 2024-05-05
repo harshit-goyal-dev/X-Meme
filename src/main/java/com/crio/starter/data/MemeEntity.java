@@ -3,9 +3,11 @@ package com.crio.starter.data;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 import javax.annotation.Generated;
+import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,10 +21,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class MemeEntity {
     
     @Id
-   // @JsonIgnore
     private String id;
+
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String url;
+
+    @NotEmpty
     private String caption;
 
 

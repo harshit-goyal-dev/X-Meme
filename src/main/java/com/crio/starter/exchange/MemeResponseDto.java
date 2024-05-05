@@ -9,6 +9,16 @@ import com.crio.starter.data.MemeEntity;
 @Getter
 @Setter
 public class MemeResponseDto {
-    private MemeEntity meme;
 
+    private String id;
+    private String name;
+    private String url;
+    private String caption;
+
+    public MemeResponseDto(MemeEntity meme){
+        id = meme.getId();
+        name = meme.getName();
+        url = meme.getUrl();
+        caption = meme.getCaption();
+    }
 }
